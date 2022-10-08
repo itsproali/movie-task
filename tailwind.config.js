@@ -2,16 +2,20 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        bannerBg: "url('/src/assets/banner.jpg')",
+      },
+    },
   },
   daisyui: {
     themes: [
       {
         mytheme: {
-          primary: "#f48023",
-          secondary: "#3b83f6",
+          primary: "#1BB8D9",
+          secondary: "#E25E66",
           accent: "#bcbbbb",
-          neutral: "#9A9A9A",
+          neutral: "#032440",
           info: "#3ABFF8",
           success: "#36D399",
           warning: "#FBBD23",
