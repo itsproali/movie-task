@@ -1,10 +1,11 @@
 import React from "react";
 import "./Banner.css";
 
-const Banner = () => {
+const Banner = ({ setQuery }) => {
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(e.target.search.value);
+    const searchValue = e.target.search.value;
+    setQuery(searchValue);
   };
   return (
     <div className="banner px-4 py-10 md:px-16 md:py-20 ">
