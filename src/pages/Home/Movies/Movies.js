@@ -26,6 +26,7 @@ const Movies = ({ query }) => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(10);
+  const [year, setYear] = useState("all");
   const [url, setUrl] = useState(
     "https://movie-task.vercel.app/api/popular?page=1"
   );
@@ -37,6 +38,9 @@ const Movies = ({ query }) => {
         setUrl(
           `https://movie-task.vercel.app/api/search?page=${currentPage}&query=${query}`
         );
+        // Year Filter Should be handle from backend
+        // } else if (year !== "all") {
+        //    setUrl(`https://movie-task.vercel.app/api/popular?release_date=${year}&page=${currentPage}`);
       } else {
         setUrl(`https://movie-task.vercel.app/api/popular?page=${currentPage}`);
       }
@@ -50,7 +54,33 @@ const Movies = ({ query }) => {
       setLoading(false);
     };
     getData();
-  }, [currentPage, url, setUrl, query]);
+  }, [currentPage, url, setUrl, query, year]);
+
+  const yearData = [
+    "2022",
+    "2021",
+    "2020",
+    "2019",
+    "2018",
+    "2017",
+    "2016",
+    "2015",
+    "2014",
+    "2013",
+    "2012",
+    "2011",
+    "2010",
+    "2009",
+    "2008",
+    "2007",
+    "2006",
+    "2005",
+    "2004",
+    "2003",
+    "2002",
+    "2001",
+    "2000",
+  ];
 
   if (loading) {
     return <Loading />;
@@ -58,9 +88,28 @@ const Movies = ({ query }) => {
 
   return (
     <div className="bg-white py-8 px-2 md:px-16">
-      <h1 className="text-2xl font-semibold text-neutral mb-4">
-        {query ? "Search Result for: " + query : "What's Popular Right Now"}
-      </h1>
+      <div className="flex items-center justify-between flex-wrap mb-4">
+        <h1 className="text-2xl font-semibold text-neutral border-l-4 border-primary pl-4">
+          {query ? "Search Result for: " + query : "What's Popular Right Now"}
+        </h1>
+
+        <label htmlFor="year" className="text-black">
+          <span>Filter: </span>
+          <select
+            name="year"
+            id="year"
+            className="focus:outline-none text-primary px-4"
+            onChange={(e) => setYear(e.target.value)}
+          >
+            <option value="all">All</option>
+            {yearData?.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
 
       {movies.length === 0 ? (
         <h1 className="text-center my-8 text-3xl text-primary font-medium">

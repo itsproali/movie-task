@@ -63,9 +63,11 @@ const MovieDetails = () => {
           alt={placeholder}
           effect="black-and-white"
           src={"https://image.tmdb.org/t/p/original" + backdrop_path}
-          className={`${backdrop_path ? "hidden md:block" : "hidden"} absolute top-0 right-0 bottom-0 left-0 m-auto -z-10 max-h-screen w-full`}
+          className={`${
+            backdrop_path ? "hidden md:block" : "hidden"
+          } absolute top-0 right-0 bottom-0 left-0 m-auto -z-10 max-h-screen w-full`}
         />
-        <div className="w-[80%] md:w-[30%]">
+        <div className="w-[80%] md:w-[30%] min-h-[60%]">
           <LazyLoadImage
             placeholderSrc={placeholder}
             alt={placeholder}
@@ -102,7 +104,7 @@ const MovieDetails = () => {
                   vote_average > 5 ? "border-success" : "border-error"
                 }`}
               >
-                {vote_average?.toFixed(2)}
+                {vote_average?.toFixed(2) || undefined}
               </span>
             </div>
 
@@ -113,7 +115,7 @@ const MovieDetails = () => {
               <span>
                 <MdHowToVote className="text-4xl" />
               </span>
-              <span>{vote_count}</span>
+              <span>{vote_count || "undefined"}</span>
             </div>
             <div
               className="flex items-center gap-1 text-white"
@@ -122,7 +124,7 @@ const MovieDetails = () => {
               <span>
                 <AiOutlineUser className="text-4xl" />
               </span>
-              <span>{popularity} m</span>
+              <span>{popularity || "undefined"} m</span>
             </div>
             {adult && (
               <div className="flex items-center gap-1 text-white" title="Adult">
@@ -136,12 +138,12 @@ const MovieDetails = () => {
 
           <div className="text white my-6">
             <h3 className="font-semibold">Overview</h3>
-            <p>{overview}</p>
+            <p>{overview || "undefined"}</p>
           </div>
 
           <div className="flex items-center gap-6">
             <span>
-              Status: <b>{status}</b>
+              Status: <b>{status || "undefined"}</b>
             </span>
             {release_date && (
               <span>
@@ -158,19 +160,19 @@ const MovieDetails = () => {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 text-xl text-black py-6">
-          <span>
+          {budget && <span>
             Budget: <b>{budget}</b>
-          </span>
-          <span>
+          </span>}
+          {revenue && <span>
             Revenue: <b>{revenue}</b>
-          </span>
-          <span>
+          </span>}
+          {spoken_languages && <span>
             Languages:{" "}
             {spoken_languages?.map((language) => (
               <b key={language.english_name}>{language.english_name + ", "}</b>
             ))}
-          </span>
-          <span>
+          </span>}
+          {imdb_id && <span>
             IMDB:{" "}
             <a
               href={"https://www.imdb.com/title/" + imdb_id}
@@ -180,13 +182,13 @@ const MovieDetails = () => {
             >
               {title}
             </a>
-          </span>
-          <span>
+          </span>}
+          {runtime && <span>
             Runtime: <b>{runtime}</b>
-          </span>
-          <span>
+          </span>}
+          {tagline && <span>
             TagLine: <b>{tagline}</b>
-          </span>
+          </span>}
         </div>
 
         <h3 className="text-black font-semibold text-2xl pl-4 my-10">
@@ -208,6 +210,8 @@ const MovieDetails = () => {
                   src={
                     "https://image.tmdb.org/t/p/original" + company?.logo_path
                   }
+                  // width="100%"
+                  height="100%"
                   className="block max-w-full"
                 />
               </div>

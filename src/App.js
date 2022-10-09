@@ -4,6 +4,7 @@ import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import MovieDetails from "./pages/MovieDetails/MovieDetails";
 import Loading from "./components/Loading/Loading";
+import GoToTop from "./components/GoToTop/GoToTop";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/movie/:id" element={<MovieDetails />} />
         <Route path="/loading" element={<Loading />} />
       </Routes>
+      <GoToTop/>
       <Footer />
     </>
   );

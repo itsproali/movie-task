@@ -13,13 +13,24 @@ const Navbar = () => {
             </h1>
           </Link>
 
-          <NavLink to="/" className="hover:text-secondary duration-300">
+          <NavLink to="/" className="hidden sm:block hover:text-secondary duration-300">
             Movies
           </NavLink>
+          <NavLink to="/" className="hidden sm:block hover:text-secondary duration-300">
+            TV Shows
+          </NavLink>
+          <a
+            href="http://itsproali.netlify.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-secondary duration-300"
+          >
+            Portfolio
+          </a>
         </div>
 
         <div className="flex items-center gap-4">
-          <NavLink to="/" className="hover:text-secondary duration-300">
+          <NavLink to="/" className="hidden sm:block hover:text-secondary duration-300">
             Join Us
           </NavLink>
           <NavLink to="/" className="hover:text-secondary duration-300">
