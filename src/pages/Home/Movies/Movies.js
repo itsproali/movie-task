@@ -6,6 +6,8 @@ import {
   HiOutlineArrowNarrowLeft,
   HiOutlineArrowNarrowRight,
 } from "react-icons/hi";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import placeholder from "../../../assets/placeholder.jpg";
 import Loading from "../../../components/Loading/Loading";
 
 /**
@@ -66,7 +68,7 @@ const Movies = ({ query }) => {
         </h1>
       ) : (
         <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-3 gap-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 2xl:grid-cols-7 gap-x-3 gap-y-6">
             {movies.map((movie) => {
               const { id, title, poster_path, release_date, vote_average } =
                 movie;
@@ -76,13 +78,17 @@ const Movies = ({ query }) => {
                   className="rounded-lg mx-auto shadow-md hover:shadow-primary duration-300"
                 >
                   <Link to={`/movie/${id}`} className="flex flex-col">
-                    <div className="relative">
-                      <img
+                    <div className="relative w-full min-h-[350px]">
+                      <LazyLoadImage
+                        alt={placeholder}
+                        placeholderSrc={placeholder}
+                        effect="opacity"
                         src={
                           "https://image.tmdb.org/t/p/original" + poster_path
                         }
-                        alt={title}
-                        className="block rounded-t-lg"
+                        width="100%"
+                        height="100%"
+                        className="block min-h-[350px] min-w-full rounded-t-lg"
                       />
                       <span className="absolute -bottom-3 left-2 w-10 h-10 rounded-full bg-neutral  flex items-center justify-center">
                         <span
