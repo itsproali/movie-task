@@ -2,11 +2,11 @@
 
 ### **Description:**
 
-Description Goes Here
+A Movie DB website to getting informatino about popular movie's rating, views, revenue, about production and many more.
 
 <br>
 
-## Live Site: []()
+## Live Site: [https://movie-task-itsproali.netlify.app/](https://movie-task-itsproali.netlify.app/)
 
 <br>
 
