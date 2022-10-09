@@ -63,9 +63,9 @@ const MovieDetails = () => {
           alt={placeholder}
           effect="black-and-white"
           src={"https://image.tmdb.org/t/p/original" + backdrop_path}
-          className="hidden md:block absolute top-0 right-0 bottom-0 left-0 m-auto -z-10 max-h-screen w-full"
+          className={`${backdrop_path ? "hidden md:block" : "hidden"} absolute top-0 right-0 bottom-0 left-0 m-auto -z-10 max-h-screen w-full`}
         />
-        <div className="w-[300px] md:w-[600px]">
+        <div className="w-[80%] md:w-[30%]">
           <LazyLoadImage
             placeholderSrc={placeholder}
             alt={placeholder}
@@ -77,7 +77,7 @@ const MovieDetails = () => {
           />
         </div>
 
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start w-[100%] md:w-[70%]">
           <h1 className="text-3xl font-semibold text-white hover:text-gray-200">
             <a href={homepage} target="_blank" rel="noopener noreferrer">
               <span>{title}</span>
