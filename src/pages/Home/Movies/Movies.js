@@ -50,7 +50,6 @@ const Movies = ({ query }) => {
           const filter = data?.data?.results?.filter(
             (movie) => movie.release_date.split("-")[0] === year
           );
-          console.log(filter);
           setMovies(filter);
         } else {
           setMovies(data?.data?.results);
