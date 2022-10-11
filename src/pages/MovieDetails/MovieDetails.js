@@ -60,7 +60,7 @@ const MovieDetails = () => {
       <div className="min-h-screen bg-neutral bg-opacity-90 relative p-4 md:p-12 flex flex-col md:flex-row items-center gap-8">
         <LazyLoadImage
           placeholderSrc={placeholder}
-          alt={placeholder}
+          alt="background"
           effect="black-and-white"
           src={"https://image.tmdb.org/t/p/original" + backdrop_path}
           className={`${
@@ -70,7 +70,7 @@ const MovieDetails = () => {
         <div className="w-[80%] md:w-[30%] min-h-[60%]">
           <LazyLoadImage
             placeholderSrc={placeholder}
-            alt={placeholder}
+            alt="poster"
             effect="black-and-white"
             src={"https://image.tmdb.org/t/p/original" + poster_path}
             width="100%"
@@ -160,35 +160,49 @@ const MovieDetails = () => {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 text-xl text-black py-6">
-          {budget && <span>
-            Budget: <b>{budget}</b>
-          </span>}
-          {revenue && <span>
-            Revenue: <b>{revenue}</b>
-          </span>}
-          {spoken_languages && <span>
-            Languages:{" "}
-            {spoken_languages?.map((language) => (
-              <b key={language.english_name}>{language.english_name + ", "}</b>
-            ))}
-          </span>}
-          {imdb_id && <span>
-            IMDB:{" "}
-            <a
-              href={"https://www.imdb.com/title/" + imdb_id}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              {title}
-            </a>
-          </span>}
-          {runtime && <span>
-            Runtime: <b>{runtime}</b>
-          </span>}
-          {tagline && <span>
-            TagLine: <b>{tagline}</b>
-          </span>}
+          {budget && (
+            <span>
+              Budget: <b>{budget}</b>
+            </span>
+          )}
+          {revenue && (
+            <span>
+              Revenue: <b>{revenue}</b>
+            </span>
+          )}
+          {spoken_languages && (
+            <span>
+              Languages:{" "}
+              {spoken_languages?.map((language) => (
+                <b key={language.english_name}>
+                  {language.english_name + ", "}
+                </b>
+              ))}
+            </span>
+          )}
+          {imdb_id && (
+            <span>
+              IMDB:{" "}
+              <a
+                href={"https://www.imdb.com/title/" + imdb_id}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                {title}
+              </a>
+            </span>
+          )}
+          {runtime && (
+            <span>
+              Runtime: <b>{runtime}</b>
+            </span>
+          )}
+          {tagline && (
+            <span>
+              TagLine: <b>{tagline}</b>
+            </span>
+          )}
         </div>
 
         <h3 className="text-black font-semibold text-2xl pl-4 my-10">
@@ -204,7 +218,7 @@ const MovieDetails = () => {
             >
               <div className="w-20 h-16">
                 <LazyLoadImage
-                  alt={placeholder}
+                  alt={company.name}
                   placeholderSrc={placeholder}
                   effect="black-and-white"
                   src={

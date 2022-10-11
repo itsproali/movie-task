@@ -26,7 +26,7 @@ const Movies = ({ query }) => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(10);
-  const [year, setYear] = useState("all");
+  const [year, setYear] = useState("All");
   const [url, setUrl] = useState(
     "https://movie-task.vercel.app/api/popular?page=1"
   );
@@ -46,8 +46,16 @@ const Movies = ({ query }) => {
       }
       try {
         const { data } = await axios.get(url);
-        setMovies(data?.data?.results);
-        setTotalPage(data?.data?.total_pages);
+        if (year !== "All") {
+          const filter = data?.data?.results?.filter(
+            (movie) => movie.release_date.split("-")[0] === year
+          );
+          console.log(filter);
+          setMovies(filter);
+        } else {
+          setMovies(data?.data?.results);
+          setTotalPage(data?.data?.total_pages);
+        }
       } catch (error) {
         Swal.fire("Oops", "Something went wrong...!", "error");
       }
@@ -57,6 +65,7 @@ const Movies = ({ query }) => {
   }, [currentPage, url, setUrl, query, year]);
 
   const yearData = [
+    "All",
     "2022",
     "2021",
     "2020",
@@ -100,8 +109,8 @@ const Movies = ({ query }) => {
             id="year"
             className="focus:outline-none text-primary px-4"
             onChange={(e) => setYear(e.target.value)}
+            defaultValue={year}
           >
-            <option value="all">All</option>
             {yearData?.map((year) => (
               <option key={year} value={year}>
                 {year}
@@ -129,7 +138,7 @@ const Movies = ({ query }) => {
                   <Link to={`/movie/${id}`} className="flex flex-col">
                     <div className="relative w-full min-h-[350px]">
                       <LazyLoadImage
-                        alt={placeholder}
+                        alt={title}
                         placeholderSrc={placeholder}
                         effect="opacity"
                         src={
